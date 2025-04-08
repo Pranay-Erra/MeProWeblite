@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const path = require('path');
 require('dotenv').config();
 
 const app = express();
@@ -26,7 +25,7 @@ app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ email, password }); // for demo only, use hashed passwords in production
+    const user = await User.findOne({ email, password }); // For demo only, use hashed passwords in production
     if (!user) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
@@ -36,20 +35,6 @@ app.post('/api/login', async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
-
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, '../ui/build')));
-
-// Serve frontend for all routes not starting with /api
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../ui/build', 'index.html'));
-// });
-
-// Serve frontend for all routes not starting with /api
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../ui/build', 'index.html'));
-});
-
 
 // Start server
 const PORT = process.env.PORT || 5000;
