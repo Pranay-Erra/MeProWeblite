@@ -36,7 +36,7 @@ const LoginPage = () => {
         // Redirect or store token here if needed
         nav('/home')
       } else {
-        alert(data.message || 'Login failed');
+        toast.error(data.message || 'Login failed');
       }
     } catch (error) {
       console.error('Error:', error);
