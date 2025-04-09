@@ -38,6 +38,14 @@ const LandingPage = () => {
   return (
     <div className="landing-container">
       <header className="hero">
+        <div className="logo-container">
+          <div className="logo-left">
+            <img src="/p1.jpg" alt="Cinepreneur Logo" className="cinepreneur-logo" />
+          </div>
+          <div className="logo-right">
+            <img src="/p2.jpg" alt="MeeSchool Logo" className="meeschool-logo" />
+          </div>
+        </div>
         <h1>🎬 Media & Entertainment Marketplace</h1>
         <p>Empowering Creators, Professionals, and Innovators</p>
         <div className="hero-buttons">
