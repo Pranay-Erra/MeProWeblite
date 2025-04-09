@@ -40,10 +40,10 @@ const LandingPage = () => {
       <header className="hero">
         <div className="logo-container">
           <div className="logo-left">
-            <img src="/p1.jpg" alt="Cinepreneur Logo" className="cinepreneur-logo" />
+            <img src="/p3.jpg" alt="Cinepreneur Logo" className="cinepreneur-logo" />
           </div>
           <div className="logo-right">
-            <img src="/p2.jpg" alt="MeeSchool Logo" className="meeschool-logo" />
+            <img src="/p1.jpg" alt="MeeSchool Logo" className="meeschool-logo" />
           </div>
         </div>
         <h1>🎬 Media & Entertainment Marketplace</h1>
