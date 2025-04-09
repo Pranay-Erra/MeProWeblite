@@ -35,6 +35,10 @@ app.post('/api/login', async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
+// Health check route
+app.get('/hello', (req, res) => {
+  res.status(200).send('Server is healthy!');
+});
 
 // Start server
 const PORT = process.env.PORT || 5000;
