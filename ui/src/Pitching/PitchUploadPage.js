@@ -57,7 +57,7 @@ const PitchUploadPage = () => {
     formData.append('note', note);
   
     try {
-      const res = await fetch('http://localhost:5000/upload', {
+      const res = await fetch('https://meproweblite.onrender.com/upload', {
         method: 'POST',
         body: formData,
       });
