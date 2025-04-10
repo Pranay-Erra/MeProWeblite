@@ -102,6 +102,10 @@ app.post('/upload', upload.single('file'), async (req, res) => {
     res.status(500).json({ error: 'Upload failed' });
   }
 });
+app.get('/hello', (req, res) => {
+  res.status(200).json({ message: 'Hello! Server is healthy ✅' });
+});
+
 
 // Start server
 const PORT = process.env.PORT || 5000;
