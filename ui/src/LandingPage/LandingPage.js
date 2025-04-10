@@ -55,18 +55,32 @@ const LandingPage = () => {
       </header>
 
       <section className="segments">
-        {segments.map((segment, index) => (
-          <div key={index} className="segment-card">
-            <h2>{segment.title}</h2>
-            <p>{segment.description}</p>
-            <ul>
-              {segment.features.map((item, i) => (
-                <li key={i}>✔️ {item}</li>
-              ))}
-            </ul>
-            <button className="deep-dive">Explore More</button>
-          </div>
-        ))}
+        {segments.map((segment, index) => {
+          const isPitching = segment.title === 'Pitching';
+
+          const handleDoubleClick = () => {
+            if (isPitching) {
+              window.location.href = '/pitch-upload'; // Change this route if using React Router
+            }
+          };
+
+          return (
+            <div
+              key={index}
+              className="segment-card"
+              {...(isPitching ? { onDoubleClick: handleDoubleClick } : {})}
+            >
+              <h2>{segment.title}</h2>
+              <p>{segment.description}</p>
+              <ul>
+                {segment.features.map((item, i) => (
+                  <li key={i}>✔️ {item}</li>
+                ))}
+              </ul>
+              <button className="deep-dive">Explore More</button>
+            </div>
+          );
+        })}
       </section>
 
       <footer className="footer">
