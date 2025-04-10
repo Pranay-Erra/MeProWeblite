@@ -5,6 +5,7 @@ const PitchUploadPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('Producers');
   const [file, setFile] = useState(null);
   const [note, setNote] = useState('');
+  const [uploadStatus, setUploadStatus] = useState('');
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
@@ -12,11 +13,67 @@ const PitchUploadPage = () => {
     setNote('');
   };
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   if (!file) {
+  //     alert('Please upload a file');
+  //     return;
+  //   }
+
+  //   const formData = new FormData();
+  //   formData.append('file', file);
+  //   formData.append('note', note);
+  //   formData.append('category', selectedCategory);
+
+  //   try {
+  //     const res = await fetch('http://localhost:5000/upload', {
+  //       method: 'POST',
+  //       body: formData,
+  //     });
+
+  //     const data = await res.json();
+
+  //     if (res.ok) {
+  //       setUploadStatus(`✅ Pitch uploaded successfully! URL: ${data.url}`);
+  //     } else {
+  //       setUploadStatus(`❌ Upload failed: ${data.error}`);
+  //     }
+  //   } catch (err) {
+  //     setUploadStatus('❌ Upload error. Please try again.');
+  //   }
+  // };
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle backend logic later
-    alert(`Pitch uploaded for ${selectedCategory}`);
+  
+    if (!file) {
+      alert('Please select a file.');
+      return;
+    }
+  
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('category', selectedCategory);
+    formData.append('note', note);
+  
+    try {
+      const res = await fetch('http://localhost:5000/upload', {
+        method: 'POST',
+        body: formData,
+      });
+  
+      const data = await res.json();
+      if (res.ok) {
+        alert(`✅ Pitch uploaded successfully! URL: ${data.url}`);
+      } else {
+        alert('❌ Upload failed: ' + data.error);
+      }
+    } catch (err) {
+      console.error('Error:', err);
+      alert('❌ Upload failed');
+    }
   };
+  
 
   return (
     <div className="pitch-upload-container">
@@ -60,6 +117,8 @@ const PitchUploadPage = () => {
 
         <button type="submit" className="submit-btn">Submit Pitch</button>
       </form>
+
+      {uploadStatus && <p style={{ marginTop: '1rem' }}>{uploadStatus}</p>}
     </div>
   );
 };
