@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './PitchUploadPage.css';
 
 const PitchUploadPage = () => {
@@ -6,62 +7,34 @@ const PitchUploadPage = () => {
   const [file, setFile] = useState(null);
   const [note, setNote] = useState('');
   const [uploadStatus, setUploadStatus] = useState('');
+  const navigate = useNavigate();
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
     setFile(null);
     setNote('');
+    setUploadStatus('');
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   if (!file) {
-  //     alert('Please upload a file');
-  //     return;
-  //   }
-
-  //   const formData = new FormData();
-  //   formData.append('file', file);
-  //   formData.append('note', note);
-  //   formData.append('category', selectedCategory);
-
-  //   try {
-  //     const res = await fetch('http://localhost:5000/upload', {
-  //       method: 'POST',
-  //       body: formData,
-  //     });
-
-  //     const data = await res.json();
-
-  //     if (res.ok) {
-  //       setUploadStatus(`✅ Pitch uploaded successfully! URL: ${data.url}`);
-  //     } else {
-  //       setUploadStatus(`❌ Upload failed: ${data.error}`);
-  //     }
-  //   } catch (err) {
-  //     setUploadStatus('❌ Upload error. Please try again.');
-  //   }
-  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (!file) {
       alert('Please select a file.');
       return;
     }
-  
+
     const formData = new FormData();
     formData.append('file', file);
     formData.append('category', selectedCategory);
     formData.append('note', note);
-  
+
     try {
       const res = await fetch('https://meproweblite.onrender.com/upload', {
         method: 'POST',
         body: formData,
       });
-  
+
       const data = await res.json();
       if (res.ok) {
         alert(`✅ Pitch uploaded successfully! URL: ${data.url}`);
@@ -73,10 +46,12 @@ const PitchUploadPage = () => {
       alert('❌ Upload failed');
     }
   };
-  
 
   return (
     <div className="pitch-upload-container">
+      {/* Home button */}
+      <button className="home-btn" onClick={() => navigate('/')}>🏠 Home</button>
+
       <h1>📤 Upload Your Pitch Deck</h1>
       <p className="subtitle">Connect with industry stakeholders by submitting your proposal</p>
 
@@ -94,6 +69,18 @@ const PitchUploadPage = () => {
           🌐 Digital Platforms
         </button>
       </div>
+
+      {selectedCategory === 'Producers' && (
+        <div className="download-link">
+          <a
+            id="producer-download"
+            href="https://example.com/latest-producer-pitch.pdf"
+            download
+          >
+            ⬇️ Download Latest Producer Pitch
+          </a>
+        </div>
+      )}
 
       <form className="upload-form" onSubmit={handleSubmit}>
         <label>

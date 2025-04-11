@@ -105,3 +105,27 @@
     font-size: 1.5rem;
   }
 }
+
+.home-btn {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.download-link {
+  margin: 1rem 0;
+}
+
+.download-link a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.download-link a:hover {
+  text-decoration: underline;
+}
