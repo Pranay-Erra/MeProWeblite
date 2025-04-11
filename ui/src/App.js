@@ -14,8 +14,8 @@ function App() {
     <ToastContainer position="top-right" autoClose={3000} />
       <BrowserRouter>
         <Routes>
-            <Route path='/' element={<LoginPage/>}/>
-            <Route path='/home' element={<LandingPage/>}/>
+            <Route path='/login' element={<LoginPage/>}/>
+            <Route path='/' element={<LandingPage/>}/>
             {/* <Route path='/register' element={<RegistrationPage/>}/> */}
             <Route path='/pitch-upload' element={<PitchUploadPage/>}/>
         </Routes>
