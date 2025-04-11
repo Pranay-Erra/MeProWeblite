@@ -1,5 +1,6 @@
 import React from 'react';
 import './LandingPage.css';
+import { useNavigate } from 'react-router-dom';
 
 const segments = [
   {
@@ -35,6 +36,10 @@ const segments = [
 ];
 
 const LandingPage = () => {
+  const nav=useNavigate();
+  const handleClick=()=>{
+    nav('/login');
+  }
   return (
     <div className="landing-container">
       <header className="hero">
@@ -49,7 +54,7 @@ const LandingPage = () => {
         <h1>🎬 Media & Entertainment Marketplace</h1>
         <p>Empowering Creators, Professionals, and Innovators</p>
         <div className="hero-buttons">
-          <button>Get Started</button>
+          <button onClick={() => handleClick()}>Login to Get Started</button>
           <button className="outline">Explore Segments</button>
         </div>
       </header>
