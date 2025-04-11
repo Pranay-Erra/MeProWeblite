@@ -73,7 +73,7 @@ const LandingPage = () => {
             <div
               key={index}
               className="segment-card"
-              {...(isPitching ? { onDoubleClick: handleDoubleClick } : {})}
+              {...(isPitching ? { onClick: handleDoubleClick } : {})}
             >
               <h2>{segment.title}</h2>
               <p>{segment.description}</p>
